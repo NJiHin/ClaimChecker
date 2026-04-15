@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* ============================================================
+   CLAIMCHECKER — BRUTALIST UI
+   Palette: #000 (bg) | #fff (text) | #ff3b00 (accent/false)
+   Font: Space Mono — monospaced, uncompromising
+   ============================================================ */
+
+:root {
+    --bg:       #000000;
+    --fg:       #ffffff;
+    --accent:   #ff3b00;
+    --muted:    rgba(255,255,255,0.6);
+    --border:   #ffffff;
+    --mono:     'Space Mono', monospace;
+    --verified: #22c55e;
+    --false:    #ef4444;
+    --unknown:  rgba(255,255,255,0.4);
+}
+
+/* ---- Reset & Base ---- */
+html, body, [class*="css"] {
+    font-family: var(--mono) !important;
+    font-size: 13px !important;
+    color: var(--fg) !important;
+    background-color: var(--bg) !important;
+}
+
+*, *::before, *::after {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+/* ---- Hide Streamlit chrome ---- */
+#MainMenu, footer, header { visibility: hidden; }
+[data-testid="stToolbar"] { display: none !important; }
+[data-testid="stDecoration"] { display: none !important; }
+[data-testid="collapsedControl"] { display: none !important; }
+
+/* ---- Remove default padding ---- */
+.main .block-container {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+    max-width: 100% !important;
+}
+
+/* ---- Page title ---- */
+.page-title {
+    font-family: var(--mono) !important;
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em !important;
+    line-height: 1 !important;
+    text-transform: uppercase;
+    color: var(--fg) !important;
+    margin-bottom: 0 !important;
+    border-bottom: 3px solid var(--fg);
+    padding-bottom: 0.4rem;
+    display: block;
+}
+
+.page-subtitle {
+    font-family: var(--mono) !important;
+    font-size: 1.05rem !important;
+    color: var(--muted) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* ---- Section headings ---- */
+.section-heading {
+    font-family: var(--mono) !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: var(--muted) !important;
+    margin-bottom: 0.6rem !important;
+    display: block;
+}
+
+/* ---- Small text ---- */
+.small {
+    font-family: var(--mono) !important;
+    font-size: 0.975rem !important;
+    color: var(--muted) !important;
+    display: block;
+}
+
+p, li, span {
+    font-family: var(--mono) !important;
+    font-size: 0.8rem;
+}
+
+
+/* ---- Text area ---- */
+textarea,
+div[data-baseweb="textarea"] textarea {
+    font-family: var(--mono) !important;
+    font-size: 0.8rem !important;
+    background: var(--bg) !important;
+    border: 2px solid var(--fg) !important;
+    color: var(--fg) !important;
+    caret-color: var(--fg) !important;
+    resize: vertical !important;
+    padding: 0.75rem !important;
+    outline: none !important;
+}
+textarea::placeholder { color: var(--muted) !important; }
+textarea:focus {
+    border-color: var(--accent) !important;
+    outline: none !important;
+}
+div[data-baseweb="textarea"] {
+    background: var(--bg) !important;
+    border: none !important;
+}
+
+/* ---- Buttons ---- */
+div.stButton > button,
+div.stButton > button[kind="primary"],
+div.stButton > button[kind="secondary"] {
+    font-family: var(--mono) !important;
+    font-size: 0.975rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    height: 2rem !important;
+    padding: 0 1rem !important;
+    background-color: var(--bg) !important;
+    color: var(--fg) !important;
+    border: 2px solid var(--fg) !important;
+    border-radius: 0 !important;
+    transition: background 0.08s, color 0.08s !important;
+    white-space: nowrap;
+}
+
+div.stButton > button:hover,
+div.stButton > button[kind="primary"]:hover,
+div.stButton > button[kind="secondary"]:hover {
+    background-color: var(--fg) !important;
+    color: var(--bg) !important;
+    border-color: var(--fg) !important;
+}
+
+div.stButton > button[kind="primary"] {
+    background-color: var(--bg) !important;
+    color: var(--fg) !important;
+    border-color: var(--fg) !important;
+}
+div.stButton > button[kind="primary"]:hover {
+    background-color: #ff7a2f !important;
+    color: var(--fg) !important;
+    border-color: #ff7a2f !important;
+}
+
+/* Stop button: second button in the run/stop row */
+[data-testid="stColumns"] > div:nth-child(2) div.stButton > button {
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+}
+[data-testid="stColumns"] > div:nth-child(2) div.stButton > button:hover {
+    background-color: var(--accent) !important;
+    color: var(--fg) !important;
+    border-color: var(--accent) !important;
+}
+
+/* ---- File uploader: brutalist theme ---- */
+[data-testid="stFileUploader"] label {
+    display: none !important;
+}
+[data-testid="stFileUploaderDropzone"] {
+    background: var(--bg) !important;
+    border: 2px dashed rgba(255,255,255,0.4) !important;
+    border-radius: 0 !important;
+    padding: 0.75rem 1rem !important;
+    cursor: pointer !important;
+    transition: border-color 0.1s !important;
+}
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: var(--fg) !important;
+}
+/* Hide the "Browse files" button — whole dropzone is already clickable */
+[data-testid="stFileUploaderDropzone"] button {
+    display: none !important;
+}
+/* Hide all text inside dropzone — label is rendered above it in Python */
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] small {
+    display: none !important;
+}
+
+/* ---- Divider ---- */
+hr {
+    border: none !important;
+    border-top: 2px solid var(--fg) !important;
+    margin: 1.25rem 0 !important;
+    opacity: 1 !important;
+}
+
+/* ---- Alerts / status ---- */
+div[data-testid="stAlert"],
+div[data-testid="stInfo"],
+div[data-testid="stSuccess"],
+div[data-testid="stError"],
+div[data-testid="stWarning"] {
+    font-family: var(--mono) !important;
+    font-size: 1.05rem !important;
+    background: var(--bg) !important;
+    border: 2px solid var(--fg) !important;
+    color: var(--fg) !important;
+    border-radius: 0 !important;
+    padding: 0.5rem 0.75rem !important;
+}
+div[data-testid="stAlert"] p,
+div[data-testid="stInfo"] p,
+div[data-testid="stSuccess"] p,
+div[data-testid="stError"] p {
+    font-family: var(--mono) !important;
+    font-size: 1.05rem !important;
+    margin: 0 !important;
+}
+div[data-testid="stAlert"] svg,
+div[data-testid="stInfo"] svg,
+div[data-testid="stSuccess"] svg,
+div[data-testid="stError"] svg {
+    display: none !important;
+}
+
+/* ---- Spinner ---- */
+.stSpinner > div {
+    border-color: var(--fg) transparent transparent transparent !important;
+}
+.stSpinner p {
+    font-family: var(--mono) !important;
+    font-size: 1.05rem !important;
+    color: var(--muted) !important;
+}
+
+/* ---- Status blink animation ---- */
+@keyframes status-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    animation: status-blink 1.1s step-end infinite;
+}
+
+/* ---- Result block ---- */
+.result-block {
+    border-top: 2px solid rgba(255,255,255,0.25);
+    padding: 0.85rem 0;
+}
+.result-block:first-child { border-top: none; }
+
+.result-sentence {
+    font-family: var(--mono) !important;
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.result-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 0;
+}
+
+.result-claim {
+    font-family: var(--mono) !important;
+    font-size: 0.8rem;
+    color: var(--fg);
+    flex: 1;
+    line-height: 1.5;
+}
+
+.result-verdict {
+    font-family: var(--mono) !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.15rem 0.4rem;
+    border: 1.5px solid currentColor;
+}
+
+.verdict-verified {
+    color: var(--verified) !important;
+    border-color: var(--verified) !important;
+}
+.verdict-false,
+.verdict-unverified {
+    color: var(--false) !important;
+    border-color: var(--false) !important;
+}
+.verdict-unknown {
+    color: var(--unknown) !important;
+    border-color: var(--unknown) !important;
+}
+
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.5); }
+
+/* ---- Column gap ---- */
+[data-testid="stColumns"] {
+    gap: 0 !important;
+}
+
+/* ---- Left column border-right ---- */
+[data-testid="stColumns"] > div:first-child {
+    border-right: 2px solid var(--fg) !important;
+    padding-right: 2rem !important;
+}
+[data-testid="stColumns"] > div:last-child {
+    padding-left: 2rem !important;
+}

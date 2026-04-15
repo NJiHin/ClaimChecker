@@ -7,11 +7,14 @@ import asyncpg
 import torch
 from dotenv import load_dotenv
 from fastapi import FastAPI
+import transformers
 from transformers import pipeline
 from mlx_lm import load
 from google import genai
 
 load_dotenv()
+
+transformers.logging.set_verbosity_error()
 
 from src.kb.database import init_db, prune_claim_cache
 from src.api.routes import router
@@ -36,10 +39,12 @@ async def _load_models(app: FastAPI):
         None,
         lambda: pipeline("text-classification", model=_CLASSIFIER_MODEL, device=device),
     )
+    print("Classifier model ready")
     model, tokeniser = await asyncio.get_event_loop().run_in_executor(
         None,
         lambda: load(_APS_MODEL),
     )
+    print("APS model ready")
     app.state.aps = (model, tokeniser)
     _ready_event.set()
 
